@@ -10,6 +10,13 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private float _scoreIncreaseFactor = 0.5f; //increase this to make enemies spawn even faster when score increases
+
+    [SerializeField]
+    private float _minSpawnTime = 0.5f;
+
+    [SerializeField]
+    private float _maxDefaultSpawnTime = 2.5f;
+
     private float _timer;
     private float _timeUntilNextSpawn = 0.2f;
 
@@ -34,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float GetRandomTime()
     {
-        float randomTime = Random.Range(0.5f, 2.5f - (_scoreCounter.score / 100 * _scoreIncreaseFactor)); //enemies start to spawn faster when score increases
+        float randomTime = Random.Range(_minSpawnTime, _maxDefaultSpawnTime - (_scoreCounter.score / 100 * _scoreIncreaseFactor)); //enemies start to spawn faster when score increases
         return randomTime;
     }
 }
